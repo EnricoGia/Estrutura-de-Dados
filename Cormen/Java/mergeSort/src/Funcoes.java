@@ -18,8 +18,8 @@ final class Funcoes {
         }
 
         // Preenche a última posição dos arrays al e ar com "infinito"
-        al[n1] = 999999999;
-        ar[n2] = 999999999;
+        al[n1] = Integer.MAX_VALUE;
+        ar[n2] = Integer.MAX_VALUE;
         mostraArray(al);
         mostraArray(ar);
 
