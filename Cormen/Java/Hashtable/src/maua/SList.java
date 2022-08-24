@@ -30,14 +30,6 @@ public class SList {
         this.proximo = proximo;
     }
 
-    public void percorreLista() {
-        while (this.proximo != null)
-            this.proximo.percorreLista();
-    }
-
-    public void teste() {
-        System.out.println("teste");
-    }
 
     public void InsereInicio(Integer endereco, SList[] vetor) {
 
