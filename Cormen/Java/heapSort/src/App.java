@@ -1,41 +1,54 @@
 public class App {
-    public static void main(String[] args) throws Exception {
-        // Max-Heapfy em um heap representado por um vetor
 
-        int[] vetor = {5, 3, 1, 2, 6, 10, 24, 3};
+    public static void heapsort(int vetor[]) {
+        int n = vetor.length;
 
-        System.out.print("Antes  : ");
-        for(int i : vetor)
-            System.out.print(i + " ");
+        for (int i = n / 2 - 1; i >= 0; i--)
+            heapify(vetor, n, i);
 
-        for(int i = vetor.length - 1 ; i>=0 ; i--)
-            maxHeapify(vetor,i);
+        for (int i = n - 1; i >= 0; i--) {
+            int temp = vetor[0];
+            vetor[0] = vetor[i];
+            vetor[i] = temp;
 
-            System.out.print("\nDepois : ");
-        
-        for(int i : vetor)
-            System.out.print(i + " ");
-  
-    }
-
-
-    public static void maxHeapify(int[] A, int pai) {
-        int pm1 = pai + 1;
-        int esq = (pm1*2)-1;
-        int dir = (pm1*2);
-        int tamanho = A.length - 1;
-        int maior = pai;
-
-        if (esq <= tamanho && A[esq] > A[maior])
-            maior = esq;
-        if (dir <= tamanho && A[dir] > A[maior])
-            maior = dir;
-        if (maior != pai) {
-            int aux = A[pai];
-            A[pai] = A[maior];
-            A[maior] = aux;
-            maxHeapify(A, maior);
+            heapify(vetor, i, 0);
         }
     }
-        }
 
+    public static void heapify(int vetor[], int n, int i) {
+        int maior = i;
+        int l = 2 * i + 1;
+        int r = 2 * i + 2;
+
+        if (l < n && vetor[l] > vetor[maior])
+            maior = l;
+
+        if (r < n && vetor[r] > vetor[maior])
+            maior = r;
+
+        if (maior != i) {
+            int aux = vetor[i];
+            vetor[i] = vetor[maior];
+            vetor[maior] = aux;
+
+            heapify(vetor, n, maior);
+        }
+    }
+
+    public static void mostraVetor(int vetor[]) {
+
+        for (int elemento : vetor)
+            System.out.print(elemento + " ");
+        System.out.println();
+    }
+
+    public static void main(String args[]) {
+        int vetor[] = { 12, 11, 13, 5, 6, 7 };
+
+        mostraVetor(vetor);
+
+        heapsort(vetor);
+
+        mostraVetor(vetor);
+    }
+}
